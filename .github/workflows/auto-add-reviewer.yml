@@ -1,0 +1,22 @@
+name: Auto Add Optional Reviewer
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add Pull Request Reviewer
+        uses: AveryCameronUofR/add-reviewer-gh-action@1.0.3
+        with: 
+          reviewers: "cgautamdevc14"
+          token: ${{ secrets.GITHUB_TOKEN }}
